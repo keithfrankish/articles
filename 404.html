@@ -6,10 +6,11 @@
 <meta name="robots" content="noindex">
 <title>File not found</title>
 <script>
-// Old file name -> new file name, both relative to /articles/.
-// Add one line per renamed eprint. Names are matched exactly (after %20 etc. are decoded).
+// Old file name -> new location. One line per renamed or withdrawn file.
+// A plain file name means a file in this repo (/articles/); a full address (https://...) is used as it stands.
+// Old names are matched exactly, after %20 etc. are decoded.
 var MOVED = {
-  "Frankish_Redirect test.pdf": "Frankish_2012_Quining_diet_qualia_eprint.pdf"
+  "Frankish_What is illusionism_eprint.pdf": "http://www.revue-klesis.org/pdf/klesis-55-04-keith-frankish-what-is-illusionism.pdf"
 };
 
 (function () {
@@ -18,7 +19,11 @@ var MOVED = {
   var name = path.substring(path.lastIndexOf("/") + 1);
   try { name = decodeURIComponent(name); } catch (e) {}
   if (Object.prototype.hasOwnProperty.call(MOVED, name)) {
-    window.location.replace(base + encodeURIComponent(MOVED[name]).replace(/%2F/g, "/"));
+    var target = MOVED[name];
+    if (!/^https?:\/\//.test(target)) {
+      target = base + encodeURIComponent(target);
+    }
+    window.location.replace(target);
   }
 })();
 </script>
