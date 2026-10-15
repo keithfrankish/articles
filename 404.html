@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>File not found</title>
+<script>
+// Old file name -> new file name, both relative to /articles/.
+// Add one line per renamed eprint. Names are matched exactly (after %20 etc. are decoded).
+var MOVED = {
+  "Frankish_Redirect test.pdf": "Frankish_2012_Quining_diet_qualia_eprint.pdf"
+};
+
+(function () {
+  var base = "/articles/";
+  var path = window.location.pathname;
+  var name = path.substring(path.lastIndexOf("/") + 1);
+  try { name = decodeURIComponent(name); } catch (e) {}
+  if (Object.prototype.hasOwnProperty.call(MOVED, name)) {
+    window.location.replace(base + encodeURIComponent(MOVED[name]).replace(/%2F/g, "/"));
+  }
+})();
+</script>
+<style>
+  body { font-family: Georgia, "Times New Roman", serif; color: #333; background: #fefdfb;
+         max-width: 36em; margin: 4em auto; padding: 0 16px; line-height: 1.5; font-size: 18px; }
+  h1 { font-weight: normal; font-size: 1.4em; }
+  a { color: #2563a8; }
+</style>
+</head>
+<body>
+<h1>File not found</h1>
+<p>There is no file at this address. It may have been renamed or withdrawn.</p>
+<p>Current eprints are listed on the <a href="https://keithfrankish.com/publications-list/">publications page</a> at keithfrankish.com.</p>
+</body>
+</html>
